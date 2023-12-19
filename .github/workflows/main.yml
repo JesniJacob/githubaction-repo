@@ -37,12 +37,13 @@ jobs:
        - name: "checkout repository"
          uses: actions/checkout@v3
 
-       -  name: "installing terraform"
-          run:  |
-             wget https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
-             unzip terraform_1.6.6_linux_amd64.zip
-             ./terraform version
-              ls -al
+       - name: "installing terraform"
+         uses: hashicorp/setup-terraform@v3
+         with:
+           terraform_version: "1.6.6"
+
+      - name: "terraform version"
+        run: terraform version      
 
        - name: "running script.sh"
          run: |
